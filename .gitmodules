@@ -1,0 +1,4 @@
+[submodule "docker"]
+	path = docker
+	url = git@github.com:chrisz100/docker-flask-demo.git
+	branch = master
