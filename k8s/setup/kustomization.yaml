@@ -1,0 +1,8 @@
+resources:
+- job.yaml
+configMapGenerator:
+- name: docker-config
+  files:
+    - config.json
+generatorOptions:
+  disableNameSuffixHash: true

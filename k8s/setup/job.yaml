@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: image-build
+spec:
+  template:
+    spec:
+      containers:
+      - image: gcr.io/kaniko-project/executor:latest
+        name: image-build
+        args: ["--dockerfile=Dockerfile",
+            "--context=s3://chrisz100-kaniko-demo/context.tar.gz",
+            "--destination=850824781275.dkr.ecr.eu-central-1.amazonaws.com/kaniko-demo:latest"]
+        volumeMounts:
+        - name: docker-config
+          mountPath: /kaniko/.docker/
+        env:
+        - name: AWS_REGION
+          value: "eu-central-1"
+      restartPolicy: Never
+      volumes:
+      - name: docker-config
+        configMap:
+          name: docker-config

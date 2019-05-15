@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: flask
+  name: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - image: 850824781275.dkr.ecr.eu-central-1.amazonaws.com/kaniko-demo:latest
+        name: kaniko-demo
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5000
+            protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
