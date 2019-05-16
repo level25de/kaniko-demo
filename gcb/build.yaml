@@ -1,0 +1,5 @@
+steps:
+  - name: gcr.io/kaniko-project/executor:latest
+    args: ["--dockerfile=Dockerfile",
+           "--context=gs://chrisz100-data/context.tar.gz",
+           "--destination=gcr.io/chrisz100-labs/flask:latest"]
